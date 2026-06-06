@@ -3,6 +3,8 @@ import { expect, it } from 'vitest';
 import { groupIntoPlates, type Plate, timelineHours } from './plates';
 import { FoodEntry } from './types';
 
+const makePlate = (hour: number): Plate => ({ hour, minute: 0, entries: [], calories: 0, protein: 0, carbs: 0, fat: 0 });
+
 it('groups entries with the same hour and minute into one plate', () => {
   const entries: FoodEntry[] = [
     new FoodEntry({ date: '2026-06-06', entryId: 'entry-1', hour: '12', minute: '30' }),
@@ -62,4 +64,8 @@ it('ends the visible timeline at 9 PM when plates are empty', () => {
   const h = timelineHours([]);
 
   expect(h[h.length - 1]).toBe(21);
+});
+
+it('includes the hour before a plate in the visible timeline', () => {
+  expect(timelineHours([makePlate(4)])).toContain(3);
 });
