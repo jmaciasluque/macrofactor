@@ -10,6 +10,10 @@ export interface Plate {
   fat: number;
 }
 
+export function timelineHours(plates: Plate[]): number[] {
+  return plates.map((p) => p.hour);
+}
+
 /**
  * Groups food entries into "plates" by their logged hour and minute.
  * Entries with the same hour+minute form a single plate.
