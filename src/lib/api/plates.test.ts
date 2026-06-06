@@ -20,3 +20,12 @@ it('sets plate calories to the sum of entries calories', () => {
 
   expect(groupIntoPlates(entries)[0].calories).toBe(300);
 });
+
+it('sets plate protein to the sum of entries protein', () => {
+  const entries: FoodEntry[] = [
+    new FoodEntry({ date: '2026-06-06', entryId: 'a', hour: '12', minute: '30', proteinRaw: 30 }),
+    new FoodEntry({ date: '2026-06-06', entryId: 'b', hour: '12', minute: '30', proteinRaw: 45 }),
+  ];
+
+  expect(groupIntoPlates(entries)[0].protein).toBe(75);
+});
