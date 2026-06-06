@@ -11,6 +11,7 @@ export interface Plate {
 }
 
 export function timelineHours(plates: Plate[]): number[] {
+  if (plates.length === 0) return [6];
   return plates.map((p) => p.hour);
 }
 
