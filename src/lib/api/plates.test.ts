@@ -57,3 +57,9 @@ it('includes plate hours in the visible timeline', () => {
 it('starts the visible timeline at 6 AM when plates are empty', () => {
   expect(timelineHours([])[0]).toBe(6);
 });
+
+it('ends the visible timeline at 9 PM when plates are empty', () => {
+  const h = timelineHours([]);
+
+  expect(h[h.length - 1]).toBe(21);
+});
