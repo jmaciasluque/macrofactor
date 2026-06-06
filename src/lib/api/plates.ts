@@ -10,9 +10,18 @@ export interface Plate {
   fat: number;
 }
 
+function rangeFromTo(low: number, high: number): number[] {
+  const result: number[] = [];
+  for (let i = low; i <= high; i++) result.push(i);
+  return result;
+}
+
 export function timelineHours(plates: Plate[]): number[] {
-  if (plates.length === 0) return [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
-  return plates.map((p) => p.hour);
+  if (plates.length === 0) return rangeFromTo(6, 21);
+  const hours = plates.map((p) => Number(p.hour));
+  const low = Math.max(0, Math.min(...hours) - 1);
+  const high = Math.min(23, Math.max(...hours) + 1);
+  return rangeFromTo(low, high);
 }
 
 /**
