@@ -27,5 +27,17 @@ export function groupIntoPlates(entries: FoodEntry[]): Plate[] {
 
   // Sort plates by time ascending
   const sortedKeys = [...byTime.keys()].sort();
-  return sortedKeys.map((k) => byTime.get(k)!) as unknown as Plate[];
+  return sortedKeys.map((k) => {
+    const group = byTime.get(k)!;
+    const [hour, minute] = k.split(':');
+    return {
+      hour,
+      minute,
+      entries: group,
+      calories: group.reduce((sum, e) => sum + e.calories(), 0),
+      protein: group.reduce((sum, e) => sum + e.protein(), 0),
+      carbs: group.reduce((sum, e) => sum + e.carbs(), 0),
+      fat: group.reduce((sum, e) => sum + e.fat(), 0),
+    };
+  });
 }
