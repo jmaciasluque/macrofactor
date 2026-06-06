@@ -53,3 +53,7 @@ it('includes plate hours in the visible timeline', () => {
     timelineHours([{ hour: 14, minute: 0, entries: [], calories: 0, protein: 0, carbs: 0, fat: 0 } as unknown as Plate])
   ).toContain(14);
 });
+
+it('starts the visible timeline at 6 AM when plates are empty', () => {
+  expect(timelineHours([])[0]).toBe(6);
+});
