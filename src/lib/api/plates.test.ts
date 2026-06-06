@@ -29,3 +29,21 @@ it('sets plate protein to the sum of entries protein', () => {
 
   expect(groupIntoPlates(entries)[0].protein).toBe(75);
 });
+
+it('sets plate carbs to the sum of entries carbs', () => {
+  const entries: FoodEntry[] = [
+    new FoodEntry({ date: '2026-06-06', entryId: 'a', hour: '12', minute: '30', carbsRaw: 50 }),
+    new FoodEntry({ date: '2026-06-06', entryId: 'b', hour: '12', minute: '30', carbsRaw: 30 }),
+  ];
+
+  expect(groupIntoPlates(entries)[0].carbs).toBe(80);
+});
+
+it('sets plate fat to the sum of entries fat', () => {
+  const entries: FoodEntry[] = [
+    new FoodEntry({ date: '2026-06-06', entryId: 'a', hour: '12', minute: '30', fatRaw: 20 }),
+    new FoodEntry({ date: '2026-06-06', entryId: 'b', hour: '12', minute: '30', fatRaw: 15 }),
+  ];
+
+  expect(groupIntoPlates(entries)[0].fat).toBe(35);
+});
