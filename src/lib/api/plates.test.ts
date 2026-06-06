@@ -75,3 +75,9 @@ it('caps the visible timeline at hour 23', () => {
 
   expect(h[h.length - 1]).toBe(23);
 });
+
+it('returns sorted unique visible timeline hours', () => {
+  const h = timelineHours([makePlate(14), makePlate(6), makePlate(14)]);
+
+  expect(h).toEqual([5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+});
