@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 
-import { groupIntoPlates } from './plates';
+import { groupIntoPlates, type Plate, timelineHours } from './plates';
 import { FoodEntry } from './types';
 
 it('groups entries with the same hour and minute into one plate', () => {
@@ -46,4 +46,10 @@ it('sets plate fat to the sum of entries fat', () => {
   ];
 
   expect(groupIntoPlates(entries)[0].fat).toBe(35);
+});
+
+it('includes plate hours in the visible timeline', () => {
+  expect(
+    timelineHours([{ hour: 14, minute: 0, entries: [], calories: 0, protein: 0, carbs: 0, fat: 0 } as unknown as Plate])
+  ).toContain(14);
 });
